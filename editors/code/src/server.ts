@@ -1,5 +1,6 @@
 import * as lc from 'vscode-languageclient';
 
+import { ProposedFeatures } from 'vscode-languageclient';
 import { Config } from './config';
 import { Highlighter } from './highlighting';
 
@@ -56,6 +57,7 @@ export class Server {
                 }
             }
         };
+        Server.client.registerProposedFeatures()
         Server.client.onReady().then(() => {
             for (const [type, handler] of notificationHandlers) {
                 Server.client.onNotification(type, handler);
